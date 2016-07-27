@@ -1,0 +1,17 @@
+<tool id="hello_world" name="helloTool">
+
+  <description>
+    Run a simple python script with I/O from Galaxy
+  </description>
+
+  <command interpreter="python">helloworld.py $output</command>
+
+  <outputs>
+    <data format="zip" name="output" />
+  </outputs>
+
+  <help>
+    This tool computes GC content from a FASTA file.
+  </help>
+
+</tool>

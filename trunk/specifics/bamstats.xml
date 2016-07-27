@@ -1,0 +1,17 @@
+<tool id="bamstats_test" name="bamstats">
+
+  <description>Call Dockstore-file bamstats</description>
+
+  <command interpreter="python">bamstats.py $input $output</command>
+  
+  <inputs>
+    <param format="bam" name="input" type="data" label="Source file"/>
+  </inputs>
+
+  <outputs>
+    <data format="zip" name="output" />
+  </outputs>
+
+  <help>This is a demonstration of running a simple Dockstore tool from the Galaxy interface</help>
+
+</tool>

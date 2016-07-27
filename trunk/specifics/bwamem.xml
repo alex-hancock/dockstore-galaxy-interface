@@ -1,0 +1,23 @@
+<tool id="bwamem_runner" name="BWA-Mem">
+
+  <description>Call BWA-Mem Dockstore CLI</description>
+
+  <command interpreter="python">
+  	bwamem.py $input1 $input2 $output1 $output2 $output3 $output4
+  </command>
+  
+  <inputs>
+    <param format="bam" name="input1" type="data" />
+    <param format="bam" name="input2" type="data" />
+  </inputs>
+
+  <outputs>
+    <data format="bai" name="output1" />
+    <data format="bam" name="output2" />
+    <data format="bam" name="output3" />
+    <data format="bai" name="output4" />
+  </outputs>
+
+  <help>This is a demonstration of running a simple Dockstore tool from the Galaxy interface</help>
+
+</tool>

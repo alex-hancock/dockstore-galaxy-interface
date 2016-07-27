@@ -1,0 +1,19 @@
+<tool id="generic_tool" name="generic">
+
+  <command interpreter="python">
+  	bwamem.py URL $input1 $input2 $output1 $output2 $output3 $output4
+  </command>
+  
+  <inputs>
+    <param format="bam" name="input1" type="data" />
+    <param format="bam" name="input2" type="data" />
+  </inputs>
+
+  <outputs>
+    <data format="bai" name="output1" />
+    <data format="bam" name="output2" />
+    <data format="bam" name="output3" />
+    <data format="bai" name="output4" />
+  </outputs>
+
+</tool>
