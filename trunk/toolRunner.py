@@ -27,10 +27,6 @@ def json_file_creation(filename):
 
 activate_virtualenv()
 
-name = 'bwamem.json'
-#name = sys.argv[1]
-json_file_creation()
-
 commandstr = "quay.io/pancancer/pcawg-bwa-mem-workflow:2.6.8"
 #commandstr = sys.argv[2]
 command = ["dockstore", "tool",	"launch", "--entry", commandstr, "--json", filepath]
