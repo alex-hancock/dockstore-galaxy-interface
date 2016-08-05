@@ -17,7 +17,10 @@ Second of all, I just pipe the stderr of that curl command to /dev/null/
 because Galaxy flips out anytime it sees stderr from it... I should fix that 
 at some point.
 
-Third and finally, there's a lot of temp files being created that probably 
+Thirdly, my solution for editing bad lines from the json file 
+is by looking for mem_gb and just not writing the line... That can't be good.
+
+Fourth and finally, there's a lot of temp files being created that probably 
 don't need to exist, but Dockstore's converter takes one and produces another, 
 so there's at least one that isn't my fault. Moreover, they should probably
 be removed.
@@ -25,10 +28,11 @@ be removed.
 
 # Call curl to retrieve json package, including cwl
 FNULL = open(os.devnull, 'w')
+curlURL = "https://www.dockstore.org:8443/api/v1/tools/quay.io%2Fbriandoconnor%2Fdockstore-tool-bamstats/versions/latest/descriptor?format=CWL"
 with open('temp.json','w') as outfile:
-	subprocess.call(["curl", "-X", "GET", "--header", "'Accept: application/json'", 
-		             "https://www.dockstore.org:8443/api/v1/tools/quay.io%2Fbriandoconnor%2Fdockstore-tool-bamstats/versions/latest/descriptor?format=CWL"],
-	    	         stdout=outfile, stderr=FNULL)
+	subprocess.call(["curl", "-X", "GET", "--header", 
+					 "'Accept: application/json'", curlURL], 
+					 stdout=outfile, stderr=FNULL)
 FNULL.close()
 
 # Need code here to process the json output of the curl command
@@ -48,6 +52,8 @@ with open('Dockstore.json','w') as outfile:
 data = ""
 with open('Dockstore.json','r') as infile:
 	for line in infile:
+		# This is a very basic, probably ineffective fix
+		# for what might be a serious problem. 
 		if "mem_gb" not in line:
 			data += line
 
